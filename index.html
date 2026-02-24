@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolly 💜 Sudu</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4b0082, #00008b);
+            overflow-x: hidden;
+            color: white;
+            font-family: 'Nunito', sans-serif;
+            padding: 20px;
+        }
+
+        /* Stars */
+        .stars {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            animation: moveStars 80s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes moveStars {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 2000px 2000px;
+            }
+        }
+
+        /* Title */
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(28px, 6vw, 48px);
+            text-align: center;
+            margin-bottom: 24px;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 2px;
+        }
+
+        /* Layout wrapper */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Rectangle Photos */
+        .rect {
+            width: clamp(100px, 18vw, 160px);
+            height: clamp(160px, 28vw, 260px);
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid #ff00ff;
+            box-shadow: 0 0 40px #00ffff;
+            flex-shrink: 0;
+        }
+
+        /* Circle Container */
+        .container {
+            position: relative;
+            width: clamp(280px, 60vw, 380px);
+            height: clamp(280px, 60vw, 380px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        /* Small Circle Photos */
+        .photo {
+            position: absolute;
+            width: clamp(60px, 13vw, 90px);
+            height: clamp(60px, 13vw, 90px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 25px #ff00ff;
+        }
+
+        .top {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bottom {
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .left {
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .right {
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Center Photo */
+        .center-photo {
+            width: clamp(110px, 24vw, 160px);
+            height: clamp(110px, 24vw, 160px);
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #ff00ff;
+            box-shadow: 0 0 50px #00ffff;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.06);
+            }
+        }
+
+        /* Description */
+        .description {
+            position: relative;
+            z-index: 1;
+            margin-top: 16px;
+            width: min(420px, 92vw);
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: clamp(16px, 4vw, 25px);
+            border-radius: 25px;
+            box-shadow: 0 0 50px #ff00ff;
+            text-align: left;
+            line-height: 1.9;
+            font-size: clamp(14px, 3.5vw, 16px);
+        }
+
+        /* Hearts */
+        .heart {
+            position: fixed;
+            animation: float 7s linear infinite;
+            color: #ff66ff;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0.5);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* ---- MOBILE (phones) ---- */
+        @media (max-width: 600px) {
+            .rect {
+                /* Hide side rects on small phones, show as top/bottom instead */
+                width: clamp(90px, 28vw, 120px);
+                height: clamp(120px, 40vw, 190px);
+            }
+
+            .wrapper {
+                gap: 10px;
+            }
+
+            .container {
+                width: min(270px, 78vw);
+                height: min(270px, 78vw);
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 380px) {
+            .rect {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars"></div>
+
+    <!-- MUSIC -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="title">Dolly 💜</div>
+
+    <div class="wrapper">
+
+        <img src="./left-rect.jpeg" class="rect" alt="">
+
+        <div class="container">
+            <img src="./photo1.jpeg" class="photo top" alt="">
+            <img src="./photo2.jpeg" class="photo left" alt="">
+            <img src="./photo3.jpeg" class="photo right" alt="">
+            <img src="./photo4.jpeg" class="photo bottom" alt="">
+            <img src="./couple.jpeg" class="center-photo" alt="">
+        </div>
+
+        <img src="./right-rect.jpeg" class="rect" alt="">
+
+    </div>
+
+    <div class="description">
+        💜 Dolly 💙 <br><br>
+        From the very first day, you became my favorite part of my life ✨
+        You are my happiness, my comfort, and my safe place.
+        Every smile of yours means the world to me.
+        No matter what happens in life, I will always stand by your side.
+        You are my today, my tomorrow, and my forever ❤️
+        Forever and Always.
+    </div>
+
+    <script>
+        /* Click anywhere to start music */
+        window.addEventListener("click", function () {
+            document.getElementById("bgMusic").play();
+        }, { once: true });
+
+        /* Floating Hearts */
+        setInterval(() => {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = ["💜", "💙", "💗", "✨"][Math.floor(Math.random() * 4)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+            heart.style.animationDuration = (Math.random() * 4 + 5) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 9000);
+        }, 600);
+    </script>
+
+</body>
+
+</html>
+
+
+
