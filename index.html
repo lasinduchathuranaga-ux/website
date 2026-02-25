@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Dolly 💜 Sudu</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --purple: #9b30ff;
@@ -20,896 +16,318 @@
             --gold: #f0c040;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; overflow-x: hidden; }
 
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             background: radial-gradient(ellipse at top, #1a0033 0%, #000033 50%, #0a001a 100%);
-            overflow-x: hidden;
             color: white;
             font-family: 'Quicksand', sans-serif;
-            padding: 24px 16px 48px;
-            position: relative;
+            padding-bottom: 50px;
         }
 
         /* AURORA */
-        .aurora {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .aurora-blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-            opacity: 0.22;
-            animation: auroraMove 14s ease-in-out infinite alternate;
-        }
-
-        .aurora-blob:nth-child(1) {
-            width: 520px;
-            height: 520px;
-            background: var(--purple);
-            top: -120px;
-            left: -120px;
-            animation-delay: 0s;
-        }
-
-        .aurora-blob:nth-child(2) {
-            width: 420px;
-            height: 420px;
-            background: var(--blue);
-            bottom: -80px;
-            right: -80px;
-            animation-delay: -5s;
-        }
-
-        .aurora-blob:nth-child(3) {
-            width: 360px;
-            height: 360px;
-            background: var(--pink);
-            top: 50%;
-            left: 50%;
-            margin-top: -180px;
-            margin-left: -180px;
-            animation-delay: -10s;
-        }
-
-        @keyframes auroraMove {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            100% {
-                transform: translate(50px, 35px) scale(1.18);
-            }
-        }
+        .aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .aurora-blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.2; animation: auroraMove 14s ease-in-out infinite alternate; }
+        .ab1 { width: 55vw; height: 55vw; max-width:500px; max-height:500px; background: var(--purple); top:-10vw; left:-10vw; }
+        .ab2 { width: 45vw; height: 45vw; max-width:420px; max-height:420px; background: var(--blue); bottom:-8vw; right:-8vw; animation-delay:-5s; }
+        .ab3 { width: 40vw; height: 40vw; max-width:360px; max-height:360px; background: var(--pink); top:50%; left:50%; animation: auroraMove3 14s ease-in-out infinite alternate -10s; }
+        @keyframes auroraMove  { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(40px,30px) scale(1.15)} }
+        @keyframes auroraMove3 { 0%{transform:translate(-50%,-50%) scale(1)} 100%{transform:translate(calc(-50% + 30px),calc(-50% + 20px)) scale(1.1)} }
 
         /* STARS */
-        .stars {
-            position: fixed;
-            inset: 0;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            animation: moveStars 100s linear infinite;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.45;
+        .stars { position: fixed; inset: 0; background: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: moveStars 100s linear infinite; z-index: 0; pointer-events: none; opacity: 0.45; }
+        @keyframes moveStars { from{background-position:0 0} to{background-position:3000px 3000px} }
+
+        /* BUTTERFLIES */
+        .bf { position: fixed; pointer-events: none; z-index: 1; font-size: clamp(12px,2.2vw,20px); animation: bfFly 8s ease-in-out infinite; filter: drop-shadow(0 0 5px rgba(155,48,255,0.7)); }
+        @keyframes bfFly {
+            0%  {transform:translate(0,0) rotate(-10deg)}
+            25% {transform:translate(18px,-18px) rotate(10deg)}
+            50% {transform:translate(4px,-35px) rotate(-5deg)}
+            75% {transform:translate(-14px,-20px) rotate(8deg)}
+            100%{transform:translate(0,0) rotate(-10deg)}
         }
 
-        @keyframes moveStars {
-            from {
-                background-position: 0 0
-            }
-
-            to {
-                background-position: 3000px 3000px
-            }
-        }
-
-        /* ══ DECORATIVE LAYER ══ */
-        .deco-layer {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        /* ── TEDDY BEARS (CSS art) ── */
-        .teddy {
-            position: absolute;
-            font-size: clamp(40px, 8vw, 70px);
-            animation: teddyFloat 6s ease-in-out infinite;
-            filter: drop-shadow(0 0 12px rgba(155, 48, 255, 0.6));
-        }
-
-        .teddy-left {
-            left: 1vw;
-            bottom: 18%;
-            animation-delay: 0s;
-        }
-
-        .teddy-right {
-            right: 1vw;
-            bottom: 12%;
-            animation-delay: -3s;
-        }
-
-        @keyframes teddyFloat {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(-4deg);
-            }
-
-            50% {
-                transform: translateY(-18px) rotate(4deg);
-            }
-        }
-
-        /* ── FLOWER BOUQUETS ── */
-        .flower-bouquet {
-            position: absolute;
-            font-size: clamp(32px, 6vw, 55px);
-            animation: flowerSway 5s ease-in-out infinite;
-            filter: drop-shadow(0 0 8px rgba(255, 77, 255, 0.5));
-            line-height: 1;
-        }
-
-        .fb-tl {
-            top: 5%;
-            left: 2%;
-            animation-delay: 0s;
-        }
-
-        .fb-tr {
-            top: 5%;
-            right: 2%;
-            animation-delay: -2s;
-            font-size: clamp(24px, 4vw, 42px);
-        }
-
-        .fb-bl {
-            bottom: 5%;
-            left: 2%;
-            animation-delay: -1s;
-            font-size: clamp(24px, 4vw, 42px);
-        }
-
-        .fb-br {
-            bottom: 5%;
-            right: 2%;
-            animation-delay: -3s;
-        }
-
-        @keyframes flowerSway {
-
-            0%,
-            100% {
-                transform: rotate(-6deg) scale(1);
-            }
-
-            50% {
-                transform: rotate(6deg) scale(1.05);
-            }
-        }
-
-        /* ── CANDLES ── */
-        .candle-wrap {
-            position: absolute;
-            bottom: 3%;
+        /* ══ TOP DECO ROW ══ */
+        .top-deco {
+            position: relative; z-index: 2;
+            width: 100%;
             display: flex;
-            gap: 8px;
-            align-items: flex-end;
-            font-size: clamp(26px, 5vw, 44px);
-            filter: drop-shadow(0 0 14px rgba(0, 170, 255, 0.7));
-            animation: candleGlow 2s ease-in-out infinite alternate;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: clamp(6px,1.5vw,14px) clamp(6px,2vw,18px) 0;
         }
-
-        .candle-left {
-            left: 12%;
+        .corner-flowers {
+            font-size: clamp(16px,4.5vw,32px);
+            line-height: 1.15;
+            animation: flowerSway 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(255,77,255,0.6));
+            white-space: nowrap;
         }
-
-        .candle-right {
-            right: 12%;
-        }
-
-        @keyframes candleGlow {
-            0% {
-                filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.6));
-            }
-
-            100% {
-                filter: drop-shadow(0 0 22px rgba(255, 220, 100, 0.9));
-            }
-        }
-
-        /* ── BUTTERFLIES ── */
-        .butterfly {
-            position: absolute;
-            font-size: clamp(16px, 3vw, 26px);
-            animation: butterflyFly 8s ease-in-out infinite;
-            filter: drop-shadow(0 0 6px rgba(155, 48, 255, 0.7));
-        }
-
-        @keyframes butterflyFly {
-            0% {
-                transform: translate(0, 0) rotate(-10deg);
-            }
-
-            25% {
-                transform: translate(30px, -25px) rotate(10deg);
-            }
-
-            50% {
-                transform: translate(10px, -50px) rotate(-5deg);
-            }
-
-            75% {
-                transform: translate(-20px, -30px) rotate(8deg);
-            }
-
-            100% {
-                transform: translate(0, 0) rotate(-10deg);
-            }
-        }
-
-        /* ── FLOATING PETALS ── */
-        .petal {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1;
-            animation: petalFall linear forwards;
-            opacity: 0;
-        }
-
-        @keyframes petalFall {
-            0% {
-                transform: translateY(-40px) rotate(0deg) translateX(0);
-                opacity: 0;
-            }
-
-            8% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 0.7;
-            }
-
-            100% {
-                transform: translateY(105vh) rotate(360deg) translateX(40px);
-                opacity: 0;
-            }
-        }
+        .corner-flowers.right { animation-delay: -2.5s; }
+        @keyframes flowerSway { 0%,100%{transform:rotate(-5deg) scale(1)} 50%{transform:rotate(5deg) scale(1.08)} }
 
         /* TITLE */
+        .title-block { position: relative; z-index: 2; text-align: center; padding: clamp(8px,2vw,16px) 10px 0; width: 100%; }
         .title {
-            position: relative;
-            z-index: 2;
             font-family: 'Dancing Script', cursive;
-            font-size: clamp(30px, 7vw, 54px);
-            text-align: center;
-            margin-bottom: 8px;
-            letter-spacing: 3px;
+            font-size: clamp(22px,5.5vw,50px);
+            letter-spacing: 2px;
             background: linear-gradient(90deg, var(--soft-pink), var(--soft-purple), var(--soft-blue), var(--gold), var(--soft-pink));
             background-size: 300% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
             animation: shimmerText 4s linear infinite;
-            filter: drop-shadow(0 0 18px rgba(255, 77, 255, 0.6));
+            filter: drop-shadow(0 0 15px rgba(255,77,255,0.5));
+            line-height: 1.2;
         }
+        @keyframes shimmerText { 0%{background-position:0% center} 100%{background-position:300% center} }
+        .subtitle { font-family:'Dancing Script',cursive; font-size:clamp(11px,2.5vw,16px); color:rgba(210,185,255,0.85); letter-spacing:1px; margin-top:3px; }
 
-        @keyframes shimmerText {
-            0% {
-                background-position: 0% center
-            }
-
-            100% {
-                background-position: 300% center
-            }
-        }
-
-        /* SUBTITLE LINE */
-        .subtitle {
-            position: relative;
-            z-index: 2;
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(13px, 3vw, 18px);
-            text-align: center;
-            margin-bottom: 20px;
-            color: rgba(210, 185, 255, 0.85);
-            letter-spacing: 1.5px;
-        }
-
-        /* WRAPPER */
-        .wrapper {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(10px, 2.5vw, 26px);
-            flex-wrap: wrap;
+        /* ══ MAIN ROW: LEFT RECT | ORBIT | RIGHT RECT ══
+           KEY: use a fixed 3-column grid so rects NEVER wrap below */
+        .main-row {
+            position: relative; z-index: 2;
             width: 100%;
             max-width: 960px;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;   /* left col | orbit | right col */
+            align-items: center;
+            justify-items: center;
+            padding: clamp(8px,1.5vw,14px) clamp(4px,1.5vw,12px) 0;
+            gap: clamp(4px,1.5vw,14px);
         }
 
-        /* RECT PHOTOS */
-        .rect-wrap {
-            position: relative;
-            flex-shrink: 0;
-        }
+        /* SIDE COLUMN — rect + teddy stacked */
+        .side-col { display: flex; flex-direction: column; align-items: center; gap: clamp(4px,1vw,8px); }
 
+        .rect-wrap { position: relative; }
         .rect {
-            width: clamp(90px, 16vw, 150px);
-            height: clamp(148px, 26vw, 248px);
-            object-fit: cover;
-            border-radius: 22px;
             display: block;
-            box-shadow: 0 0 0 3px var(--pink), 0 0 35px rgba(0, 170, 255, 0.6);
+            /* Width scales with viewport but never bigger than 150px, never smaller than 60px */
+            width: clamp(60px, 18vw, 150px);
+            height: clamp(96px, 29vw, 245px);
+            object-fit: cover;
+            border-radius: clamp(12px,3vw,22px);
+            box-shadow: 0 0 0 2px var(--pink), 0 0 22px rgba(0,170,255,0.55);
             animation: rectPulse 3s ease-in-out infinite alternate;
         }
-
-        .rect-wrap:last-child .rect {
-            animation-delay: -1.5s;
-        }
-
+        .side-col:last-child .rect { animation-delay: -1.5s; }
         @keyframes rectPulse {
-            0% {
-                box-shadow: 0 0 0 3px var(--pink), 0 0 35px rgba(0, 170, 255, 0.6);
-            }
-
-            100% {
-                box-shadow: 0 0 0 3px var(--blue), 0 0 40px rgba(255, 77, 255, 0.6);
-            }
+            0%  { box-shadow:0 0 0 2px var(--pink), 0 0 22px rgba(0,170,255,0.55); }
+            100%{ box-shadow:0 0 0 2px var(--blue), 0 0 28px rgba(255,77,255,0.55); }
         }
+        .rect-wrap::before { content:'🌸'; position:absolute; top:-10px; left:-8px; font-size:clamp(12px,3vw,20px); animation:flowerSway 4s ease-in-out infinite; z-index:3; }
+        .rect-wrap::after  { content:'🌺'; position:absolute; bottom:-10px; right:-8px; font-size:clamp(12px,3vw,20px); animation:flowerSway 4s ease-in-out infinite -2s; z-index:3; }
 
-        /* Flower decoration on rect corners */
-        .rect-wrap::before,
-        .rect-wrap::after {
-            position: absolute;
-            font-size: 22px;
-            z-index: 3;
-            animation: flowerSway 4s ease-in-out infinite;
-        }
+        .teddy-emoji { font-size:clamp(22px,5.5vw,46px); animation:teddyFloat 6s ease-in-out infinite; filter:drop-shadow(0 0 10px rgba(155,48,255,0.65)); line-height:1; }
+        .side-col:last-child .teddy-emoji { animation-delay:-3s; }
+        @keyframes teddyFloat { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-10px) rotate(5deg)} }
 
-        .rect-wrap::before {
-            content: '🌸';
-            top: -12px;
-            left: -10px;
-        }
-
-        .rect-wrap::after {
-            content: '🌺';
-            bottom: -12px;
-            right: -10px;
-            animation-delay: -2s;
-        }
-
-        /* ORBIT WRAP */
+        /* ══ ORBIT ══ */
         .orbit-wrap {
             position: relative;
-            width: clamp(268px, 54vw, 376px);
-            height: clamp(268px, 54vw, 376px);
+            /* orbit size based on remaining space after rects — clamp tightly */
+            width: clamp(180px, 44vw, 340px);
+            height: clamp(180px, 44vw, 340px);
             flex-shrink: 0;
         }
+        .orbit-ring { position:absolute; inset:0; border-radius:50%; border:2px dashed rgba(180,130,255,0.3); }
+        .orbit-ring::before { content:''; position:absolute; inset:-3px; border-radius:50%; border:2.5px solid transparent; border-top-color:var(--pink); border-bottom-color:var(--blue); animation:spinA 3s linear infinite; }
+        .orbit-ring::after  { content:''; position:absolute; inset:8px;  border-radius:50%; border:2px solid transparent; border-left-color:var(--purple); border-right-color:var(--soft-pink); animation:spinA 5s linear infinite reverse; }
+        @keyframes spinA { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 
-        /* SPINNING RING */
-        .orbit-ring {
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            border: 2px dashed rgba(180, 130, 255, 0.35);
-        }
-
-        .orbit-ring::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            border: 2.5px solid transparent;
-            border-top-color: var(--pink);
-            border-bottom-color: var(--blue);
-            animation: spinA 3s linear infinite;
-        }
-
-        .orbit-ring::after {
-            content: '';
-            position: absolute;
-            inset: 9px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            border-left-color: var(--purple);
-            border-right-color: var(--soft-pink);
-            animation: spinA 5s linear infinite reverse;
-        }
-
-        @keyframes spinA {
-            from {
-                transform: rotate(0deg)
-            }
-
-            to {
-                transform: rotate(360deg)
-            }
-        }
-
-        /* ORBITING PHOTOS */
-        .orbit-photos {
-            position: absolute;
-            inset: 0;
-            animation: spinOrbit 11s linear infinite;
-        }
-
-        @keyframes spinOrbit {
-            from {
-                transform: rotate(0deg)
-            }
-
-            to {
-                transform: rotate(360deg)
-            }
-        }
+        .orbit-photos { position:absolute; inset:0; animation:spinOrbit 11s linear infinite; }
+        @keyframes spinOrbit { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 
         .photo {
-            position: absolute;
-            width: clamp(56px, 12vw, 80px);
-            height: clamp(56px, 12vw, 80px);
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--blue);
-            box-shadow: 0 0 20px rgba(255, 77, 255, 0.7);
+            position:absolute;
+            width:clamp(44px,9.5vw,72px);
+            height:clamp(44px,9.5vw,72px);
+            border-radius:50%; object-fit:cover;
+            border:2px solid var(--blue);
+            box-shadow:0 0 14px rgba(255,77,255,0.7);
         }
+        .photo.top    { top:-3%;    left:50%; animation:csTop    11s linear infinite; }
+        .photo.bottom { bottom:-3%; left:50%; animation:csBottom 11s linear infinite; }
+        .photo.left   { left:-3%;   top:50%;  animation:csLeft   11s linear infinite; }
+        .photo.right  { right:-3%;  top:50%;  animation:csRight  11s linear infinite; }
+        @keyframes csTop    { from{transform:translate(-50%,0)   rotate(0deg)} to{transform:translate(-50%,0)   rotate(-360deg)} }
+        @keyframes csBottom { from{transform:translate(-50%,0)   rotate(0deg)} to{transform:translate(-50%,0)   rotate(-360deg)} }
+        @keyframes csLeft   { from{transform:translate(0,-50%)   rotate(0deg)} to{transform:translate(0,-50%)   rotate(-360deg)} }
+        @keyframes csRight  { from{transform:translate(0,-50%)   rotate(0deg)} to{transform:translate(0,-50%)   rotate(-360deg)} }
 
-        .photo.top {
-            top: -3%;
-            left: 50%;
-            animation: csTop 11s linear infinite;
-        }
-
-        .photo.bottom {
-            bottom: -3%;
-            left: 50%;
-            animation: csBottom 11s linear infinite;
-        }
-
-        .photo.left {
-            left: -3%;
-            top: 50%;
-            animation: csLeft 11s linear infinite;
-        }
-
-        .photo.right {
-            right: -3%;
-            top: 50%;
-            animation: csRight 11s linear infinite;
-        }
-
-        @keyframes csTop {
-            from {
-                transform: translate(-50%, 0) rotate(0deg)
-            }
-
-            to {
-                transform: translate(-50%, 0) rotate(-360deg)
-            }
-        }
-
-        @keyframes csBottom {
-            from {
-                transform: translate(-50%, 0) rotate(0deg)
-            }
-
-            to {
-                transform: translate(-50%, 0) rotate(-360deg)
-            }
-        }
-
-        @keyframes csLeft {
-            from {
-                transform: translate(0, -50%) rotate(0deg)
-            }
-
-            to {
-                transform: translate(0, -50%) rotate(-360deg)
-            }
-        }
-
-        @keyframes csRight {
-            from {
-                transform: translate(0, -50%) rotate(0deg)
-            }
-
-            to {
-                transform: translate(0, -50%) rotate(-360deg)
-            }
-        }
-
-        /* LIGHT DOTS */
-        .ldot {
-            position: absolute;
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            margin: -4px 0 0 -4px;
-        }
-
-        .ldot:nth-child(1) {
-            background: var(--pink);
-            box-shadow: 0 0 10px var(--pink);
-            animation: ldotSpin 11s linear infinite;
-        }
-
-        .ldot:nth-child(2) {
-            background: var(--blue);
-            box-shadow: 0 0 10px var(--blue);
-            animation: ldotSpin 11s linear infinite -3.67s;
-        }
-
-        .ldot:nth-child(3) {
-            background: var(--purple);
-            box-shadow: 0 0 10px var(--purple);
-            animation: ldotSpin 11s linear infinite -7.33s;
-        }
-
+        .ldot { position:absolute; width:7px; height:7px; border-radius:50%; top:50%; left:50%; margin:-3.5px 0 0 -3.5px; }
+        .ldot:nth-child(1){ background:var(--pink);   box-shadow:0 0 9px var(--pink);   animation:ldotSpin 11s linear infinite 0s; }
+        .ldot:nth-child(2){ background:var(--blue);   box-shadow:0 0 9px var(--blue);   animation:ldotSpin 11s linear infinite -3.67s; }
+        .ldot:nth-child(3){ background:var(--purple); box-shadow:0 0 9px var(--purple); animation:ldotSpin 11s linear infinite -7.33s; }
         @keyframes ldotSpin {
-            from {
-                transform: rotate(0deg) translateX(clamp(134px, 27vw, 188px)) rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg) translateX(clamp(134px, 27vw, 188px)) rotate(-360deg);
-            }
+            from{ transform:rotate(0deg)   translateX(clamp(90px,22vw,170px)) rotate(0deg); }
+            to  { transform:rotate(360deg) translateX(clamp(90px,22vw,170px)) rotate(-360deg); }
         }
 
-        /* CENTER PHOTO */
+        .orbit-badge { position:absolute; z-index:4; font-size:clamp(14px,3.5vw,26px); animation:badgeBounce 3s ease-in-out infinite; filter:drop-shadow(0 0 7px rgba(255,180,255,0.8)); }
+        .badge-tl{ top:-12px;    left:-12px;    animation-delay:0s; }
+        .badge-tr{ top:-12px;    right:-12px;   animation-delay:-1.5s; }
+        .badge-bl{ bottom:-12px; left:-12px;    animation-delay:-0.75s; }
+        .badge-br{ bottom:-12px; right:-12px;   animation-delay:-2.25s; }
+        @keyframes badgeBounce { 0%,100%{transform:scale(1) rotate(-8deg)} 50%{transform:scale(1.2) rotate(8deg)} }
+
         .center-photo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: clamp(102px, 21vw, 148px);
-            height: clamp(102px, 21vw, 148px);
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--pink);
-            box-shadow: 0 0 0 7px rgba(155, 48, 255, 0.3), 0 0 40px rgba(0, 170, 255, 0.6);
-            animation: heartbeat 2.2s ease-in-out infinite;
-            z-index: 3;
+            position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+            width:clamp(80px,18vw,138px); height:clamp(80px,18vw,138px);
+            border-radius:50%; object-fit:cover;
+            border:3px solid var(--pink);
+            box-shadow:0 0 0 5px rgba(155,48,255,0.25), 0 0 30px rgba(0,170,255,0.5);
+            animation:heartbeat 2.2s ease-in-out infinite; z-index:3;
         }
-
         @keyframes heartbeat {
-
-            0%,
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-            }
-
-            15% {
-                transform: translate(-50%, -50%) scale(1.09);
-            }
-
-            30% {
-                transform: translate(-50%, -50%) scale(0.97);
-            }
-
-            45% {
-                transform: translate(-50%, -50%) scale(1.05);
-            }
+            0%,100%{transform:translate(-50%,-50%) scale(1)}
+            15%    {transform:translate(-50%,-50%) scale(1.09)}
+            30%    {transform:translate(-50%,-50%) scale(0.97)}
+            45%    {transform:translate(-50%,-50%) scale(1.05)}
         }
 
-        /* ── TEDDY + FLOWER BADGES on orbit corners ── */
-        .orbit-badge {
-            position: absolute;
-            font-size: clamp(22px, 4.5vw, 34px);
-            z-index: 4;
-            animation: badgeBounce 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(255, 180, 255, 0.8));
+        /* ══ CANDLE ROW ══ */
+        .candle-row {
+            position: relative; z-index: 2;
+            width: 100%; max-width: 960px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: clamp(5px,1.2vw,10px) clamp(8px,3vw,30px) 0;
         }
+        .candle-group { display:flex; gap:3px; align-items:flex-end; font-size:clamp(18px,4.5vw,36px); filter:drop-shadow(0 0 12px rgba(0,170,255,0.6)); animation:candleGlow 2s ease-in-out infinite alternate; }
+        .candle-group:last-child { animation-delay:-1s; }
+        @keyframes candleGlow { 0%{filter:drop-shadow(0 0 10px rgba(0,170,255,0.5))} 100%{filter:drop-shadow(0 0 20px rgba(255,220,80,0.9))} }
+        .candle-mid { font-size:clamp(14px,3.5vw,24px); animation:flowerSway 5s ease-in-out infinite; filter:drop-shadow(0 0 6px rgba(255,77,255,0.5)); }
 
-        .badge-tl {
-            top: -16px;
-            left: -16px;
-            animation-delay: 0s;
-        }
-
-        .badge-tr {
-            top: -16px;
-            right: -16px;
-            animation-delay: -1.5s;
-        }
-
-        .badge-bl {
-            bottom: -16px;
-            left: -16px;
-            animation-delay: -0.75s;
-        }
-
-        .badge-br {
-            bottom: -16px;
-            right: -16px;
-            animation-delay: -2.25s;
-        }
-
-        @keyframes badgeBounce {
-
-            0%,
-            100% {
-                transform: scale(1) rotate(-8deg);
-            }
-
-            50% {
-                transform: scale(1.2) rotate(8deg);
-            }
-        }
-
-        /* DESCRIPTION */
+        /* ══ DESCRIPTION ══ */
         .description {
-            position: relative;
-            z-index: 2;
-            margin-top: 22px;
-            width: min(460px, 94vw);
-            background: linear-gradient(135deg, rgba(155, 48, 255, 0.14), rgba(0, 170, 255, 0.11), rgba(255, 77, 255, 0.14));
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            padding: clamp(18px, 4.5vw, 28px) clamp(20px, 5vw, 34px);
-            border-radius: 28px;
-            border: 1px solid rgba(255, 180, 255, 0.22);
-            box-shadow: 0 0 60px rgba(255, 77, 255, 0.28), 0 0 30px rgba(0, 170, 255, 0.18);
-            line-height: 2;
-            font-size: clamp(13px, 3.3vw, 15px);
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.93);
+            position: relative; z-index: 2;
+            margin: clamp(12px,2vw,18px) auto 0;
+            width: min(460px, 92vw);
+            background: linear-gradient(135deg, rgba(155,48,255,0.13), rgba(0,170,255,0.1), rgba(255,77,255,0.13));
+            backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+            padding: clamp(14px,3.5vw,24px) clamp(16px,4vw,30px);
+            border-radius: 24px;
+            border: 1px solid rgba(255,180,255,0.2);
+            box-shadow: 0 0 55px rgba(255,77,255,0.25), 0 0 28px rgba(0,170,255,0.16);
+            line-height: 1.9; font-size:clamp(12px,3vw,14.5px); font-weight:600; color:rgba(255,255,255,0.92);
             animation: descGlow 4s ease-in-out infinite alternate;
         }
+        @keyframes descGlow { 0%{box-shadow:0 0 55px rgba(255,77,255,0.25), 0 0 28px rgba(0,170,255,0.16)} 100%{box-shadow:0 0 75px rgba(155,48,255,0.45), 0 0 45px rgba(255,77,255,0.28)} }
+        .desc-flowers { text-align:center; font-size:clamp(14px,3.5vw,20px); margin-bottom:7px; animation:flowerSway 4s ease-in-out infinite; }
+        .desc-name { font-family:'Dancing Script',cursive; font-size:clamp(17px,4vw,23px); background:linear-gradient(90deg,var(--soft-pink),var(--soft-purple),var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .desc-thinking { font-family:'Dancing Script',cursive; font-size:clamp(13px,3vw,18px); color:var(--soft-blue); -webkit-text-fill-color:var(--soft-blue); }
+        .desc-sign { font-family:'Dancing Script',cursive; font-size:clamp(14px,3.2vw,19px); color:var(--gold); -webkit-text-fill-color:var(--gold); }
+        .desc-teddies { text-align:center; font-size:clamp(14px,3.5vw,20px); margin-top:8px; animation:teddyFloat 5s ease-in-out infinite; }
 
-        @keyframes descGlow {
-            0% {
-                box-shadow: 0 0 60px rgba(255, 77, 255, 0.28), 0 0 30px rgba(0, 170, 255, 0.18);
-            }
+        /* RAIN */
+        .hrain { position:fixed; top:-50px; pointer-events:none; z-index:1; animation:rainFall linear forwards; opacity:0; }
+        @keyframes rainFall { 0%{transform:translateY(0) rotate(-10deg);opacity:0} 8%{opacity:1} 88%{opacity:0.85} 100%{transform:translateY(115vh) rotate(12deg);opacity:0} }
+        .sparkle { position:fixed; pointer-events:none; z-index:1; width:5px; height:5px; border-radius:50%; animation:spklFly linear forwards; opacity:0; }
+        @keyframes spklFly { 0%{opacity:0;transform:translateY(0) scale(0)} 15%{opacity:1;transform:translateY(-22px) scale(1)} 80%{opacity:0.5} 100%{opacity:0;transform:translateY(-90px) scale(0)} }
 
-            100% {
-                box-shadow: 0 0 80px rgba(155, 48, 255, 0.5), 0 0 50px rgba(255, 77, 255, 0.3);
-            }
-        }
-
-        .desc-name {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(20px, 4.5vw, 26px);
-            background: linear-gradient(90deg, var(--soft-pink), var(--soft-purple), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 8px rgba(255, 77, 255, 0.6));
-        }
-
-        /* Desc flower deco */
-        .description::before {
-            content: '🌸🌼🌺';
-            display: block;
-            text-align: center;
-            font-size: 20px;
-            margin-bottom: 6px;
-            animation: flowerSway 4s ease-in-out infinite;
-        }
-
-        .description::after {
-            content: '🧸💜🧸';
-            display: block;
-            text-align: center;
-            font-size: 20px;
-            margin-top: 10px;
-            animation: teddyFloat 5s ease-in-out infinite;
-        }
-
-        /* HEART RAIN */
-        .hrain {
-            position: fixed;
-            top: -50px;
-            pointer-events: none;
-            z-index: 1;
-            animation: rainFall linear forwards;
-            opacity: 0;
-        }
-
-        @keyframes rainFall {
-            0% {
-                transform: translateY(0) rotate(-10deg);
-                opacity: 0;
-            }
-
-            8% {
-                opacity: 1;
-            }
-
-            88% {
-                opacity: 0.85;
-            }
-
-            100% {
-                transform: translateY(115vh) rotate(12deg);
-                opacity: 0;
-            }
-        }
-
-        /* SPARKLE */
-        .sparkle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            animation: spklFly linear forwards;
-            opacity: 0;
-        }
-
-        @keyframes spklFly {
-            0% {
-                opacity: 0;
-                transform: translateY(0) scale(0);
-            }
-
-            15% {
-                opacity: 1;
-                transform: translateY(-25px) scale(1);
-            }
-
-            80% {
-                opacity: 0.5;
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-100px) scale(0);
-            }
-        }
-
-        /* MOBILE */
-        @media (max-width: 600px) {
-            .rect {
-                width: clamp(78px, 22vw, 112px);
-                height: clamp(118px, 34vw, 170px);
-            }
-
-            .wrapper {
-                gap: 8px;
-            }
-
-            .orbit-wrap {
-                width: min(256px, 72vw);
-                height: min(256px, 72vw);
-            }
-
-            .teddy {
-                font-size: 32px;
-            }
-
-            .candle-wrap {
-                font-size: 24px;
-            }
-
-            .flower-bouquet {
-                font-size: clamp(22px, 5vw, 38px);
-            }
-        }
-
-        @media (max-width: 380px) {
-            .rect-wrap {
-                display: none;
-            }
-
-            .teddy {
-                display: none;
-            }
+        /* ── MOBILE: nothing wraps, just everything shrinks ── */
+        @media (max-width: 400px) {
+            .bf { display: none; }
         }
     </style>
 </head>
-
 <body>
 
     <div class="aurora">
-        <div class="aurora-blob"></div>
-        <div class="aurora-blob"></div>
-        <div class="aurora-blob"></div>
+        <div class="aurora-blob ab1"></div>
+        <div class="aurora-blob ab2"></div>
+        <div class="aurora-blob ab3"></div>
     </div>
     <div class="stars"></div>
 
-    <!-- Decorative corner elements -->
-    <div class="deco-layer">
-        <!-- Flower bouquets in corners -->
-        <div class="flower-bouquet fb-tl">💐🌸<br>🌺🌼</div>
-        <div class="flower-bouquet fb-tr">🌸💐<br>🌼🌺</div>
-        <div class="flower-bouquet fb-bl">🌺🌼<br>💐🌸</div>
-        <div class="flower-bouquet fb-br">🌼🌺<br>🌸💐</div>
-
-        <!-- Teddy bears on sides -->
-        <div class="teddy teddy-left">🧸</div>
-        <div class="teddy teddy-right">🧸</div>
-
-        <!-- Candles at bottom -->
-        <div class="candle-wrap candle-left">🕯️🫙</div>
-        <div class="candle-wrap candle-right">🫙🕯️</div>
-
-        <!-- Butterflies scattered -->
-        <div class="butterfly" style="top:8%;  left:25%; animation-delay:0s;">🦋</div>
-        <div class="butterfly" style="top:12%; right:28%; animation-delay:-3s;">🦋</div>
-        <div class="butterfly" style="top:30%; left:5%;  animation-delay:-5s; font-size:14px;">🦋</div>
-        <div class="butterfly" style="top:25%; right:5%; animation-delay:-1.5s; font-size:14px;">🦋</div>
-        <div class="butterfly" style="top:55%; left:8%;  animation-delay:-2s; font-size:12px;">🦋</div>
-        <div class="butterfly" style="top:60%; right:7%; animation-delay:-4s; font-size:12px;">🦋</div>
-    </div>
+    <!-- Butterflies fixed in background -->
+    <div class="bf" style="top:9%;  left:24%; animation-delay:0s;">🦋</div>
+    <div class="bf" style="top:15%; right:22%; animation-delay:-3s;">🦋</div>
+    <div class="bf" style="top:45%; left:3%;  animation-delay:-5s;">🦋</div>
+    <div class="bf" style="top:40%; right:3%; animation-delay:-1.5s;">🦋</div>
+    <div class="bf" style="top:70%; left:5%;  animation-delay:-2s; font-size:11px;">🦋</div>
+    <div class="bf" style="top:74%; right:4%; animation-delay:-4s; font-size:11px;">🦋</div>
 
     <audio id="bgMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="title">Just for You, Dolly 💜</div>
-    <div class="subtitle">✨ Just a little note to make you smile… ✨</div>
+    <!-- TOP CORNER FLOWERS + TITLE -->
+    <div class="top-deco">
+        <div class="corner-flowers">💐<br>🌸<br>🌺</div>
+        <div class="corner-flowers right">💐<br>🌼<br>🌸</div>
+    </div>
 
-    <div class="wrapper">
+    <div class="title-block">
+        <div class="title">Just for You, Dolly 💜</div>
+        <div class="subtitle">✨ Just a little note to make you smile… ✨</div>
+    </div>
 
-        <div class="rect-wrap">
-            <img src="./left-rect.jpeg" class="rect" alt="">
+    <!-- MAIN ROW: always left | center | right -->
+    <div class="main-row">
+
+        <!-- LEFT -->
+        <div class="side-col">
+            <div class="rect-wrap">
+                <img src="./left-rect.jpeg" class="rect" alt="">
+            </div>
+            <div class="teddy-emoji">🧸</div>
         </div>
 
+        <!-- CENTER ORBIT -->
         <div class="orbit-wrap">
             <div class="orbit-ring"></div>
-
-            <!-- Corner badges -->
+            <div class="ldot"></div>
+            <div class="ldot"></div>
+            <div class="ldot"></div>
             <div class="orbit-badge badge-tl">🌸</div>
             <div class="orbit-badge badge-tr">🧸</div>
             <div class="orbit-badge badge-bl">🌺</div>
             <div class="orbit-badge badge-br">💜</div>
-
-            <!-- Light dots -->
-            <div class="ldot"></div>
-            <div class="ldot"></div>
-            <div class="ldot"></div>
-
-            <!-- Spinning orbit -->
             <div class="orbit-photos">
-                <img src="./photo1.jpeg" class="photo top" alt="">
-                <img src="./photo2.jpeg" class="photo left" alt="">
-                <img src="./photo3.jpeg" class="photo right" alt="">
+                <img src="./photo1.jpeg" class="photo top"    alt="">
+                <img src="./photo2.jpeg" class="photo left"   alt="">
+                <img src="./photo3.jpeg" class="photo right"  alt="">
                 <img src="./photo4.jpeg" class="photo bottom" alt="">
             </div>
-
             <img src="./couple.jpeg" class="center-photo" alt="">
         </div>
 
-        <div class="rect-wrap">
-            <img src="./right-rect.jpeg" class="rect" alt="">
+        <!-- RIGHT -->
+        <div class="side-col">
+            <div class="rect-wrap">
+                <img src="./right-rect.jpeg" class="rect" alt="">
+            </div>
+            <div class="teddy-emoji">🧸</div>
         </div>
 
     </div>
 
+    <!-- CANDLES -->
+    <div class="candle-row">
+        <div class="candle-group">🕯️🫙</div>
+        <div class="candle-mid">🌼🌸🌺🌼🌸</div>
+        <div class="candle-group">🫙🕯️</div>
+    </div>
+
+    <!-- DESCRIPTION -->
     <div class="description">
+        <div class="desc-flowers">🌸🌼🌺🌼🌸</div>
         <span class="desc-name">💜 Dolly 💙</span><br><br>
         From the very first day, you became my favorite part of my life ✨<br>
         You are my happiness, my comfort, and my safe place.<br>
         Every smile of yours means the world to me.<br>
         No matter what happens in life, I will always stand by your side.<br>
         You are my today, my tomorrow, and my forever ❤️<br><br>
-        <span style="font-family:'Dancing Script',cursive; font-size:1.2em; color:var(--soft-blue);">Thinking of You…
-            and Sending You Lots of Love</span><br><br>
-        <em style="color:var(--gold); font-family:'Dancing Script',cursive; font-size:1.1em;">With Love From Sudu
-            💜</em>
+        <span class="desc-thinking">Thinking of You… and Sending You Lots of Love 💙</span><br><br>
+        <span class="desc-sign">With Love From Sudu 💜</span>
+        <div class="desc-teddies">🧸💜🧸</div>
     </div>
 
     <script>
@@ -917,43 +335,26 @@
             document.getElementById("bgMusic").play();
         }, { once: true });
 
-        // Heart + flower + teddy rain
-        const rainItems = ["💜", "💙", "💗", "💕", "✨", "🌸", "💖", "💫", "🩵", "🩷", "🌺", "🌼", "🦋", "⭐", "🌟", "🧸"];
+        const rainItems = ["💜","💙","💗","💕","✨","🌸","💖","💫","🩵","🩷","🌺","🌼","🦋","⭐","🌟","🧸"];
         function spawnRain() {
             const el = document.createElement("div");
             el.className = "hrain";
             el.textContent = rainItems[Math.floor(Math.random() * rainItems.length)];
             el.style.left = (Math.random() * 100) + "vw";
-            el.style.fontSize = (Math.random() * 16 + 9) + "px";
+            el.style.fontSize = (Math.random() * 14 + 9) + "px";
             const dur = (Math.random() * 5 + 6).toFixed(1);
             el.style.animationDuration = dur + "s";
             document.body.appendChild(el);
             setTimeout(() => el.remove(), parseFloat(dur) * 1000 + 200);
         }
-        setInterval(spawnRain, 260);
+        setInterval(spawnRain, 280);
 
-        // Falling petals
-        const petals = ["🌸", "🌺", "🌼", "💮", "🏵️"];
-        function spawnPetal() {
-            const el = document.createElement("div");
-            el.className = "petal";
-            el.textContent = petals[Math.floor(Math.random() * petals.length)];
-            el.style.left = (Math.random() * 100) + "vw";
-            el.style.fontSize = (Math.random() * 12 + 8) + "px";
-            const dur = (Math.random() * 6 + 8).toFixed(1);
-            el.style.animationDuration = dur + "s";
-            document.body.appendChild(el);
-            setTimeout(() => el.remove(), parseFloat(dur) * 1000 + 200);
-        }
-        setInterval(spawnPetal, 800);
-
-        // Sparkles
-        const sparkColors = ["#9b30ff", "#00aaff", "#ff4dff", "#d4aaff", "#aaddff", "#ffaaff", "#f0c040"];
+        const sparkColors = ["#9b30ff","#00aaff","#ff4dff","#d4aaff","#aaddff","#ffaaff","#f0c040"];
         function spawnSparkle() {
             const el = document.createElement("div");
             el.className = "sparkle";
             el.style.left = (Math.random() * 98) + "vw";
-            el.style.top = (Math.random() * 98) + "vh";
+            el.style.top  = (Math.random() * 98) + "vh";
             const c = sparkColors[Math.floor(Math.random() * sparkColors.length)];
             el.style.background = c;
             el.style.boxShadow = "0 0 6px " + c;
@@ -964,17 +365,15 @@
         }
         setInterval(spawnSparkle, 130);
 
-        // Cycling glow on rects
-        const gc = [["var(--pink)", "var(--blue)"], ["var(--blue)", "var(--purple)"], ["var(--purple)", "var(--pink)"]];
+        const gc = [["var(--pink)","var(--blue)"],["var(--blue)","var(--purple)"],["var(--purple)","var(--pink)"]];
         let gi = 0;
         setInterval(() => {
             gi = (gi + 1) % gc.length;
             document.querySelectorAll('.rect').forEach(r => {
                 r.style.transition = "box-shadow 1.2s ease";
-                r.style.boxShadow = `0 0 0 3px ${gc[gi][0]}, 0 0 38px ${gc[gi][1]}`;
+                r.style.boxShadow = `0 0 0 2px ${gc[gi][0]}, 0 0 25px ${gc[gi][1]}`;
             });
         }, 2000);
     </script>
 </body>
-
 </html>
