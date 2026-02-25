@@ -6,10 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dolly 💜 Sudu</title>
     <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap"
         rel="stylesheet">
 
     <style>
+        :root {
+            --purple: #9b30ff;
+            --blue: #00aaff;
+            --pink: #ff4dff;
+            --soft-blue: #a8d8ff;
+            --soft-purple: #c9a8ff;
+            --soft-pink: #ffb3ff;
+            --gold: #f0c040;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -22,198 +32,789 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #4b0082, #00008b);
+            background: radial-gradient(ellipse at top, #1a0033 0%, #000033 50%, #0a001a 100%);
             overflow-x: hidden;
             color: white;
-            font-family: 'Nunito', sans-serif;
-            padding: 20px;
+            font-family: 'Quicksand', sans-serif;
+            padding: 24px 16px 48px;
+            position: relative;
         }
 
-        /* Stars */
-        .stars {
+        /* AURORA */
+        .aurora {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            animation: moveStars 80s linear infinite;
+            inset: 0;
             z-index: 0;
             pointer-events: none;
+            overflow: hidden;
+        }
+
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.22;
+            animation: auroraMove 14s ease-in-out infinite alternate;
+        }
+
+        .aurora-blob:nth-child(1) {
+            width: 520px;
+            height: 520px;
+            background: var(--purple);
+            top: -120px;
+            left: -120px;
+            animation-delay: 0s;
+        }
+
+        .aurora-blob:nth-child(2) {
+            width: 420px;
+            height: 420px;
+            background: var(--blue);
+            bottom: -80px;
+            right: -80px;
+            animation-delay: -5s;
+        }
+
+        .aurora-blob:nth-child(3) {
+            width: 360px;
+            height: 360px;
+            background: var(--pink);
+            top: 50%;
+            left: 50%;
+            margin-top: -180px;
+            margin-left: -180px;
+            animation-delay: -10s;
+        }
+
+        @keyframes auroraMove {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(50px, 35px) scale(1.18);
+            }
+        }
+
+        /* STARS */
+        .stars {
+            position: fixed;
+            inset: 0;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            animation: moveStars 100s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.45;
         }
 
         @keyframes moveStars {
             from {
-                background-position: 0 0;
+                background-position: 0 0
             }
 
             to {
-                background-position: 2000px 2000px;
+                background-position: 3000px 3000px
             }
         }
 
-        /* Title */
-        .title {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(28px, 6vw, 48px);
-            text-align: center;
-            margin-bottom: 24px;
-            text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
-            position: relative;
+        /* ══ DECORATIVE LAYER ══ */
+        .deco-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
             z-index: 1;
-            letter-spacing: 2px;
+            overflow: hidden;
         }
 
-        /* Layout wrapper */
+        /* ── TEDDY BEARS (CSS art) ── */
+        .teddy {
+            position: absolute;
+            font-size: clamp(40px, 8vw, 70px);
+            animation: teddyFloat 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 12px rgba(155, 48, 255, 0.6));
+        }
+
+        .teddy-left {
+            left: 1vw;
+            bottom: 18%;
+            animation-delay: 0s;
+        }
+
+        .teddy-right {
+            right: 1vw;
+            bottom: 12%;
+            animation-delay: -3s;
+        }
+
+        @keyframes teddyFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-4deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(4deg);
+            }
+        }
+
+        /* ── FLOWER BOUQUETS ── */
+        .flower-bouquet {
+            position: absolute;
+            font-size: clamp(32px, 6vw, 55px);
+            animation: flowerSway 5s ease-in-out infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 77, 255, 0.5));
+            line-height: 1;
+        }
+
+        .fb-tl {
+            top: 5%;
+            left: 2%;
+            animation-delay: 0s;
+        }
+
+        .fb-tr {
+            top: 5%;
+            right: 2%;
+            animation-delay: -2s;
+            font-size: clamp(24px, 4vw, 42px);
+        }
+
+        .fb-bl {
+            bottom: 5%;
+            left: 2%;
+            animation-delay: -1s;
+            font-size: clamp(24px, 4vw, 42px);
+        }
+
+        .fb-br {
+            bottom: 5%;
+            right: 2%;
+            animation-delay: -3s;
+        }
+
+        @keyframes flowerSway {
+
+            0%,
+            100% {
+                transform: rotate(-6deg) scale(1);
+            }
+
+            50% {
+                transform: rotate(6deg) scale(1.05);
+            }
+        }
+
+        /* ── CANDLES ── */
+        .candle-wrap {
+            position: absolute;
+            bottom: 3%;
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+            font-size: clamp(26px, 5vw, 44px);
+            filter: drop-shadow(0 0 14px rgba(0, 170, 255, 0.7));
+            animation: candleGlow 2s ease-in-out infinite alternate;
+        }
+
+        .candle-left {
+            left: 12%;
+        }
+
+        .candle-right {
+            right: 12%;
+        }
+
+        @keyframes candleGlow {
+            0% {
+                filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.6));
+            }
+
+            100% {
+                filter: drop-shadow(0 0 22px rgba(255, 220, 100, 0.9));
+            }
+        }
+
+        /* ── BUTTERFLIES ── */
+        .butterfly {
+            position: absolute;
+            font-size: clamp(16px, 3vw, 26px);
+            animation: butterflyFly 8s ease-in-out infinite;
+            filter: drop-shadow(0 0 6px rgba(155, 48, 255, 0.7));
+        }
+
+        @keyframes butterflyFly {
+            0% {
+                transform: translate(0, 0) rotate(-10deg);
+            }
+
+            25% {
+                transform: translate(30px, -25px) rotate(10deg);
+            }
+
+            50% {
+                transform: translate(10px, -50px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translate(-20px, -30px) rotate(8deg);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(-10deg);
+            }
+        }
+
+        /* ── FLOATING PETALS ── */
+        .petal {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            animation: petalFall linear forwards;
+            opacity: 0;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-40px) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+
+            8% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(105vh) rotate(360deg) translateX(40px);
+                opacity: 0;
+            }
+        }
+
+        /* TITLE */
+        .title {
+            position: relative;
+            z-index: 2;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(30px, 7vw, 54px);
+            text-align: center;
+            margin-bottom: 8px;
+            letter-spacing: 3px;
+            background: linear-gradient(90deg, var(--soft-pink), var(--soft-purple), var(--soft-blue), var(--gold), var(--soft-pink));
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerText 4s linear infinite;
+            filter: drop-shadow(0 0 18px rgba(255, 77, 255, 0.6));
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: 0% center
+            }
+
+            100% {
+                background-position: 300% center
+            }
+        }
+
+        /* SUBTITLE LINE */
+        .subtitle {
+            position: relative;
+            z-index: 2;
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(13px, 3vw, 18px);
+            text-align: center;
+            margin-bottom: 20px;
+            color: rgba(210, 185, 255, 0.85);
+            letter-spacing: 1.5px;
+        }
+
+        /* WRAPPER */
         .wrapper {
             position: relative;
-            z-index: 1;
+            z-index: 2;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: clamp(10px, 2.5vw, 26px);
             flex-wrap: wrap;
             width: 100%;
-            max-width: 900px;
+            max-width: 960px;
         }
 
-        /* Rectangle Photos */
-        .rect {
-            width: clamp(100px, 18vw, 160px);
-            height: clamp(160px, 28vw, 260px);
-            object-fit: cover;
-            border-radius: 20px;
-            border: 4px solid #ff00ff;
-            box-shadow: 0 0 40px #00ffff;
-            flex-shrink: 0;
-        }
-
-        /* Circle Container */
-        .container {
+        /* RECT PHOTOS */
+        .rect-wrap {
             position: relative;
-            width: clamp(280px, 60vw, 380px);
-            height: clamp(280px, 60vw, 380px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             flex-shrink: 0;
         }
 
-        /* Small Circle Photos */
+        .rect {
+            width: clamp(90px, 16vw, 150px);
+            height: clamp(148px, 26vw, 248px);
+            object-fit: cover;
+            border-radius: 22px;
+            display: block;
+            box-shadow: 0 0 0 3px var(--pink), 0 0 35px rgba(0, 170, 255, 0.6);
+            animation: rectPulse 3s ease-in-out infinite alternate;
+        }
+
+        .rect-wrap:last-child .rect {
+            animation-delay: -1.5s;
+        }
+
+        @keyframes rectPulse {
+            0% {
+                box-shadow: 0 0 0 3px var(--pink), 0 0 35px rgba(0, 170, 255, 0.6);
+            }
+
+            100% {
+                box-shadow: 0 0 0 3px var(--blue), 0 0 40px rgba(255, 77, 255, 0.6);
+            }
+        }
+
+        /* Flower decoration on rect corners */
+        .rect-wrap::before,
+        .rect-wrap::after {
+            position: absolute;
+            font-size: 22px;
+            z-index: 3;
+            animation: flowerSway 4s ease-in-out infinite;
+        }
+
+        .rect-wrap::before {
+            content: '🌸';
+            top: -12px;
+            left: -10px;
+        }
+
+        .rect-wrap::after {
+            content: '🌺';
+            bottom: -12px;
+            right: -10px;
+            animation-delay: -2s;
+        }
+
+        /* ORBIT WRAP */
+        .orbit-wrap {
+            position: relative;
+            width: clamp(268px, 54vw, 376px);
+            height: clamp(268px, 54vw, 376px);
+            flex-shrink: 0;
+        }
+
+        /* SPINNING RING */
+        .orbit-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px dashed rgba(180, 130, 255, 0.35);
+        }
+
+        .orbit-ring::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 2.5px solid transparent;
+            border-top-color: var(--pink);
+            border-bottom-color: var(--blue);
+            animation: spinA 3s linear infinite;
+        }
+
+        .orbit-ring::after {
+            content: '';
+            position: absolute;
+            inset: 9px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-left-color: var(--purple);
+            border-right-color: var(--soft-pink);
+            animation: spinA 5s linear infinite reverse;
+        }
+
+        @keyframes spinA {
+            from {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        /* ORBITING PHOTOS */
+        .orbit-photos {
+            position: absolute;
+            inset: 0;
+            animation: spinOrbit 11s linear infinite;
+        }
+
+        @keyframes spinOrbit {
+            from {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
         .photo {
             position: absolute;
-            width: clamp(60px, 13vw, 90px);
-            height: clamp(60px, 13vw, 90px);
+            width: clamp(56px, 12vw, 80px);
+            height: clamp(56px, 12vw, 80px);
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #00ffff;
-            box-shadow: 0 0 25px #ff00ff;
+            border: 3px solid var(--blue);
+            box-shadow: 0 0 20px rgba(255, 77, 255, 0.7);
         }
 
-        .top {
-            top: 0;
+        .photo.top {
+            top: -3%;
             left: 50%;
-            transform: translateX(-50%);
+            animation: csTop 11s linear infinite;
         }
 
-        .bottom {
-            bottom: 0;
+        .photo.bottom {
+            bottom: -3%;
             left: 50%;
-            transform: translateX(-50%);
+            animation: csBottom 11s linear infinite;
         }
 
-        .left {
-            left: 0;
+        .photo.left {
+            left: -3%;
             top: 50%;
-            transform: translateY(-50%);
+            animation: csLeft 11s linear infinite;
         }
 
-        .right {
-            right: 0;
+        .photo.right {
+            right: -3%;
             top: 50%;
-            transform: translateY(-50%);
+            animation: csRight 11s linear infinite;
         }
 
-        /* Center Photo */
+        @keyframes csTop {
+            from {
+                transform: translate(-50%, 0) rotate(0deg)
+            }
+
+            to {
+                transform: translate(-50%, 0) rotate(-360deg)
+            }
+        }
+
+        @keyframes csBottom {
+            from {
+                transform: translate(-50%, 0) rotate(0deg)
+            }
+
+            to {
+                transform: translate(-50%, 0) rotate(-360deg)
+            }
+        }
+
+        @keyframes csLeft {
+            from {
+                transform: translate(0, -50%) rotate(0deg)
+            }
+
+            to {
+                transform: translate(0, -50%) rotate(-360deg)
+            }
+        }
+
+        @keyframes csRight {
+            from {
+                transform: translate(0, -50%) rotate(0deg)
+            }
+
+            to {
+                transform: translate(0, -50%) rotate(-360deg)
+            }
+        }
+
+        /* LIGHT DOTS */
+        .ldot {
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            margin: -4px 0 0 -4px;
+        }
+
+        .ldot:nth-child(1) {
+            background: var(--pink);
+            box-shadow: 0 0 10px var(--pink);
+            animation: ldotSpin 11s linear infinite;
+        }
+
+        .ldot:nth-child(2) {
+            background: var(--blue);
+            box-shadow: 0 0 10px var(--blue);
+            animation: ldotSpin 11s linear infinite -3.67s;
+        }
+
+        .ldot:nth-child(3) {
+            background: var(--purple);
+            box-shadow: 0 0 10px var(--purple);
+            animation: ldotSpin 11s linear infinite -7.33s;
+        }
+
+        @keyframes ldotSpin {
+            from {
+                transform: rotate(0deg) translateX(clamp(134px, 27vw, 188px)) rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg) translateX(clamp(134px, 27vw, 188px)) rotate(-360deg);
+            }
+        }
+
+        /* CENTER PHOTO */
         .center-photo {
-            width: clamp(110px, 24vw, 160px);
-            height: clamp(110px, 24vw, 160px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: clamp(102px, 21vw, 148px);
+            height: clamp(102px, 21vw, 148px);
             border-radius: 50%;
             object-fit: cover;
-            border: 5px solid #ff00ff;
-            box-shadow: 0 0 50px #00ffff;
-            animation: heartbeat 2s infinite;
+            border: 4px solid var(--pink);
+            box-shadow: 0 0 0 7px rgba(155, 48, 255, 0.3), 0 0 40px rgba(0, 170, 255, 0.6);
+            animation: heartbeat 2.2s ease-in-out infinite;
+            z-index: 3;
         }
 
         @keyframes heartbeat {
 
             0%,
             100% {
-                transform: scale(1);
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            15% {
+                transform: translate(-50%, -50%) scale(1.09);
+            }
+
+            30% {
+                transform: translate(-50%, -50%) scale(0.97);
+            }
+
+            45% {
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        /* ── TEDDY + FLOWER BADGES on orbit corners ── */
+        .orbit-badge {
+            position: absolute;
+            font-size: clamp(22px, 4.5vw, 34px);
+            z-index: 4;
+            animation: badgeBounce 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 180, 255, 0.8));
+        }
+
+        .badge-tl {
+            top: -16px;
+            left: -16px;
+            animation-delay: 0s;
+        }
+
+        .badge-tr {
+            top: -16px;
+            right: -16px;
+            animation-delay: -1.5s;
+        }
+
+        .badge-bl {
+            bottom: -16px;
+            left: -16px;
+            animation-delay: -0.75s;
+        }
+
+        .badge-br {
+            bottom: -16px;
+            right: -16px;
+            animation-delay: -2.25s;
+        }
+
+        @keyframes badgeBounce {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(-8deg);
             }
 
             50% {
-                transform: scale(1.06);
+                transform: scale(1.2) rotate(8deg);
             }
         }
 
-        /* Description */
+        /* DESCRIPTION */
         .description {
             position: relative;
-            z-index: 1;
-            margin-top: 16px;
-            width: min(420px, 92vw);
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            padding: clamp(16px, 4vw, 25px);
-            border-radius: 25px;
-            box-shadow: 0 0 50px #ff00ff;
-            text-align: left;
-            line-height: 1.9;
-            font-size: clamp(14px, 3.5vw, 16px);
+            z-index: 2;
+            margin-top: 22px;
+            width: min(460px, 94vw);
+            background: linear-gradient(135deg, rgba(155, 48, 255, 0.14), rgba(0, 170, 255, 0.11), rgba(255, 77, 255, 0.14));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: clamp(18px, 4.5vw, 28px) clamp(20px, 5vw, 34px);
+            border-radius: 28px;
+            border: 1px solid rgba(255, 180, 255, 0.22);
+            box-shadow: 0 0 60px rgba(255, 77, 255, 0.28), 0 0 30px rgba(0, 170, 255, 0.18);
+            line-height: 2;
+            font-size: clamp(13px, 3.3vw, 15px);
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.93);
+            animation: descGlow 4s ease-in-out infinite alternate;
         }
 
-        /* Hearts */
-        .heart {
-            position: fixed;
-            animation: float 7s linear infinite;
-            color: #ff66ff;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes float {
+        @keyframes descGlow {
             0% {
-                transform: translateY(100vh) scale(0.5);
-                opacity: 1;
+                box-shadow: 0 0 60px rgba(255, 77, 255, 0.28), 0 0 30px rgba(0, 170, 255, 0.18);
             }
 
             100% {
-                transform: translateY(-10vh) scale(1.5);
+                box-shadow: 0 0 80px rgba(155, 48, 255, 0.5), 0 0 50px rgba(255, 77, 255, 0.3);
+            }
+        }
+
+        .desc-name {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(20px, 4.5vw, 26px);
+            background: linear-gradient(90deg, var(--soft-pink), var(--soft-purple), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(255, 77, 255, 0.6));
+        }
+
+        /* Desc flower deco */
+        .description::before {
+            content: '🌸🌼🌺';
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 6px;
+            animation: flowerSway 4s ease-in-out infinite;
+        }
+
+        .description::after {
+            content: '🧸💜🧸';
+            display: block;
+            text-align: center;
+            font-size: 20px;
+            margin-top: 10px;
+            animation: teddyFloat 5s ease-in-out infinite;
+        }
+
+        /* HEART RAIN */
+        .hrain {
+            position: fixed;
+            top: -50px;
+            pointer-events: none;
+            z-index: 1;
+            animation: rainFall linear forwards;
+            opacity: 0;
+        }
+
+        @keyframes rainFall {
+            0% {
+                transform: translateY(0) rotate(-10deg);
+                opacity: 0;
+            }
+
+            8% {
+                opacity: 1;
+            }
+
+            88% {
+                opacity: 0.85;
+            }
+
+            100% {
+                transform: translateY(115vh) rotate(12deg);
                 opacity: 0;
             }
         }
 
-        /* ---- MOBILE (phones) ---- */
-        @media (max-width: 600px) {
-            .rect {
-                /* Hide side rects on small phones, show as top/bottom instead */
-                width: clamp(90px, 28vw, 120px);
-                height: clamp(120px, 40vw, 190px);
+        /* SPARKLE */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            animation: spklFly linear forwards;
+            opacity: 0;
+        }
+
+        @keyframes spklFly {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
             }
 
-            .wrapper {
-                gap: 10px;
+            15% {
+                opacity: 1;
+                transform: translateY(-25px) scale(1);
             }
 
-            .container {
-                width: min(270px, 78vw);
-                height: min(270px, 78vw);
+            80% {
+                opacity: 0.5;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
             }
         }
 
-        /* Very small screens */
-        @media (max-width: 380px) {
+        /* MOBILE */
+        @media (max-width: 600px) {
             .rect {
+                width: clamp(78px, 22vw, 112px);
+                height: clamp(118px, 34vw, 170px);
+            }
+
+            .wrapper {
+                gap: 8px;
+            }
+
+            .orbit-wrap {
+                width: min(256px, 72vw);
+                height: min(256px, 72vw);
+            }
+
+            .teddy {
+                font-size: 32px;
+            }
+
+            .candle-wrap {
+                font-size: 24px;
+            }
+
+            .flower-bouquet {
+                font-size: clamp(22px, 5vw, 38px);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .rect-wrap {
+                display: none;
+            }
+
+            .teddy {
                 display: none;
             }
         }
@@ -222,63 +823,158 @@
 
 <body>
 
+    <div class="aurora">
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+        <div class="aurora-blob"></div>
+    </div>
     <div class="stars"></div>
 
-    <!-- MUSIC -->
+    <!-- Decorative corner elements -->
+    <div class="deco-layer">
+        <!-- Flower bouquets in corners -->
+        <div class="flower-bouquet fb-tl">💐🌸<br>🌺🌼</div>
+        <div class="flower-bouquet fb-tr">🌸💐<br>🌼🌺</div>
+        <div class="flower-bouquet fb-bl">🌺🌼<br>💐🌸</div>
+        <div class="flower-bouquet fb-br">🌼🌺<br>🌸💐</div>
+
+        <!-- Teddy bears on sides -->
+        <div class="teddy teddy-left">🧸</div>
+        <div class="teddy teddy-right">🧸</div>
+
+        <!-- Candles at bottom -->
+        <div class="candle-wrap candle-left">🕯️🫙</div>
+        <div class="candle-wrap candle-right">🫙🕯️</div>
+
+        <!-- Butterflies scattered -->
+        <div class="butterfly" style="top:8%;  left:25%; animation-delay:0s;">🦋</div>
+        <div class="butterfly" style="top:12%; right:28%; animation-delay:-3s;">🦋</div>
+        <div class="butterfly" style="top:30%; left:5%;  animation-delay:-5s; font-size:14px;">🦋</div>
+        <div class="butterfly" style="top:25%; right:5%; animation-delay:-1.5s; font-size:14px;">🦋</div>
+        <div class="butterfly" style="top:55%; left:8%;  animation-delay:-2s; font-size:12px;">🦋</div>
+        <div class="butterfly" style="top:60%; right:7%; animation-delay:-4s; font-size:12px;">🦋</div>
+    </div>
+
     <audio id="bgMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="title">Dolly 💜</div>
+    <div class="title">Just for You, Dolly 💜</div>
+    <div class="subtitle">✨ Just a little note to make you smile… ✨</div>
 
     <div class="wrapper">
 
-        <img src="./left-rect.jpeg" class="rect" alt="">
+        <div class="rect-wrap">
+            <img src="./left-rect.jpeg" class="rect" alt="">
+        </div>
 
-        <div class="container">
-            <img src="./photo1.jpeg" class="photo top" alt="">
-            <img src="./photo2.jpeg" class="photo left" alt="">
-            <img src="./photo3.jpeg" class="photo right" alt="">
-            <img src="./photo4.jpeg" class="photo bottom" alt="">
+        <div class="orbit-wrap">
+            <div class="orbit-ring"></div>
+
+            <!-- Corner badges -->
+            <div class="orbit-badge badge-tl">🌸</div>
+            <div class="orbit-badge badge-tr">🧸</div>
+            <div class="orbit-badge badge-bl">🌺</div>
+            <div class="orbit-badge badge-br">💜</div>
+
+            <!-- Light dots -->
+            <div class="ldot"></div>
+            <div class="ldot"></div>
+            <div class="ldot"></div>
+
+            <!-- Spinning orbit -->
+            <div class="orbit-photos">
+                <img src="./photo1.jpeg" class="photo top" alt="">
+                <img src="./photo2.jpeg" class="photo left" alt="">
+                <img src="./photo3.jpeg" class="photo right" alt="">
+                <img src="./photo4.jpeg" class="photo bottom" alt="">
+            </div>
+
             <img src="./couple.jpeg" class="center-photo" alt="">
         </div>
 
-        <img src="./right-rect.jpeg" class="rect" alt="">
+        <div class="rect-wrap">
+            <img src="./right-rect.jpeg" class="rect" alt="">
+        </div>
 
     </div>
 
     <div class="description">
-        💜 Dolly 💙 <br><br>
-        From the very first day, you became my favorite part of my life ✨
-        You are my happiness, my comfort, and my safe place.
-        Every smile of yours means the world to me.
-        No matter what happens in life, I will always stand by your side.
-        You are my today, my tomorrow, and my forever ❤️
-        Forever and Always.
+        <span class="desc-name">💜 Dolly 💙</span><br><br>
+        From the very first day, you became my favorite part of my life ✨<br>
+        You are my happiness, my comfort, and my safe place.<br>
+        Every smile of yours means the world to me.<br>
+        No matter what happens in life, I will always stand by your side.<br>
+        You are my today, my tomorrow, and my forever ❤️<br><br>
+        <span style="font-family:'Dancing Script',cursive; font-size:1.2em; color:var(--soft-blue);">Thinking of You…
+            and Sending You Lots of Love</span><br><br>
+        <em style="color:var(--gold); font-family:'Dancing Script',cursive; font-size:1.1em;">With Love From Sudu
+            💜</em>
     </div>
 
     <script>
-        /* Click anywhere to start music */
-        window.addEventListener("click", function () {
+        window.addEventListener("click", () => {
             document.getElementById("bgMusic").play();
         }, { once: true });
 
-        /* Floating Hearts */
-        setInterval(() => {
-            let heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = ["💜", "💙", "💗", "✨"][Math.floor(Math.random() * 4)];
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-            heart.style.animationDuration = (Math.random() * 4 + 5) + "s";
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 9000);
-        }, 600);
-    </script>
+        // Heart + flower + teddy rain
+        const rainItems = ["💜", "💙", "💗", "💕", "✨", "🌸", "💖", "💫", "🩵", "🩷", "🌺", "🌼", "🦋", "⭐", "🌟", "🧸"];
+        function spawnRain() {
+            const el = document.createElement("div");
+            el.className = "hrain";
+            el.textContent = rainItems[Math.floor(Math.random() * rainItems.length)];
+            el.style.left = (Math.random() * 100) + "vw";
+            el.style.fontSize = (Math.random() * 16 + 9) + "px";
+            const dur = (Math.random() * 5 + 6).toFixed(1);
+            el.style.animationDuration = dur + "s";
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), parseFloat(dur) * 1000 + 200);
+        }
+        setInterval(spawnRain, 260);
 
+        // Falling petals
+        const petals = ["🌸", "🌺", "🌼", "💮", "🏵️"];
+        function spawnPetal() {
+            const el = document.createElement("div");
+            el.className = "petal";
+            el.textContent = petals[Math.floor(Math.random() * petals.length)];
+            el.style.left = (Math.random() * 100) + "vw";
+            el.style.fontSize = (Math.random() * 12 + 8) + "px";
+            const dur = (Math.random() * 6 + 8).toFixed(1);
+            el.style.animationDuration = dur + "s";
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), parseFloat(dur) * 1000 + 200);
+        }
+        setInterval(spawnPetal, 800);
+
+        // Sparkles
+        const sparkColors = ["#9b30ff", "#00aaff", "#ff4dff", "#d4aaff", "#aaddff", "#ffaaff", "#f0c040"];
+        function spawnSparkle() {
+            const el = document.createElement("div");
+            el.className = "sparkle";
+            el.style.left = (Math.random() * 98) + "vw";
+            el.style.top = (Math.random() * 98) + "vh";
+            const c = sparkColors[Math.floor(Math.random() * sparkColors.length)];
+            el.style.background = c;
+            el.style.boxShadow = "0 0 6px " + c;
+            const dur = (Math.random() * 1.8 + 1.2).toFixed(1);
+            el.style.animationDuration = dur + "s";
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), parseFloat(dur) * 1000 + 100);
+        }
+        setInterval(spawnSparkle, 130);
+
+        // Cycling glow on rects
+        const gc = [["var(--pink)", "var(--blue)"], ["var(--blue)", "var(--purple)"], ["var(--purple)", "var(--pink)"]];
+        let gi = 0;
+        setInterval(() => {
+            gi = (gi + 1) % gc.length;
+            document.querySelectorAll('.rect').forEach(r => {
+                r.style.transition = "box-shadow 1.2s ease";
+                r.style.boxShadow = `0 0 0 3px ${gc[gi][0]}, 0 0 38px ${gc[gi][1]}`;
+            });
+        }, 2000);
+    </script>
 </body>
 
 </html>
-
-
-
